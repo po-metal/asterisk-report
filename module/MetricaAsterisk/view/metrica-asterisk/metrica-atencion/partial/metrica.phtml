@@ -1,0 +1,13 @@
+
+
+<?php foreach ($this->tipo->getObjetos() as $objeto): ?>
+
+    <?php echo $this->partial('metrica-asterisk/metrica-atencion/partial/table-horizontal', ['objeto' => $objeto]); ?>
+
+    <?php echo $this->partial('metrica-asterisk/metrica-atencion/partial/chart-multi', ['objeto' => $objeto]); ?>
+
+    <?php echo $this->partial('metrica-asterisk/metrica-atencion/partial/chart-pie', ['objeto' => $objeto]); ?>
+
+    <div class="clearfix"></div>
+
+<?php endforeach; ?>

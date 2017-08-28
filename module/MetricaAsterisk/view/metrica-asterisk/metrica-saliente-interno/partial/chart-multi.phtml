@@ -1,0 +1,71 @@
+<div class="col-md-7">
+    <!-- LINE CHART -->
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title"><?= $objeto->getTipo()->getId(); ?> - <?= $objeto; ?>
+
+            </h3>
+             <div class="pull-right" style="margin-left:20px;">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+            
+            <div class="btn-group pull-right">
+                <button id="btn_bar_<?= $objeto->getChartJsId(); ?>" type="button" class="btn btn-default " ><i class="fa fa-bar-chart"></i></button>
+                <button id="btn_area_<?= $objeto->getChartJsId(); ?>" type="button" class="btn btn-default" ><i class="fa fa-area-chart"></i></button>
+                <button id="btn_line_<?= $objeto->getChartJsId(); ?>" type="button" class="btn btn-default" ><i class="fa fa-line-chart"></i></button>
+            </div>  
+
+
+           
+        </div>
+        <div class="box-body">
+            <div class="chart">
+                <canvas id="<?= $objeto->getChartJsCanvasId(); ?>" style="height: 200px; width: 510px;" height="200" width="510" ></canvas>
+            </div>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+
+
+</div>
+
+<script>
+    var <?= $objeto->getChartJsCanvasId(); ?> = <?= $objeto->getChartJsData($this->metricaAsteriskOptions()->getColoresPorEstado()); ?>;
+    var ctx_<?= $objeto->getChartJsId(); ?> = document.getElementById("<?= $objeto->getChartJsCanvasId(); ?>").getContext('2d');
+    var chart_<?= $objeto->getChartJsId(); ?> = new Chart(ctx_<?= $objeto->getChartJsId(); ?>, {
+        type: "line",
+        data:<?= $objeto->getChartJsCanvasId(); ?>,
+        options: <?= $objeto->getChartJsOptions(); ?>
+    });
+
+
+    document.getElementById('btn_bar_<?= $objeto->getChartJsId(); ?>').onclick = function () {
+        chart_<?= $objeto->getChartJsId(); ?>.destroy();
+        chart_<?= $objeto->getChartJsId(); ?> = new Chart(ctx_<?= $objeto->getChartJsId(); ?>, {
+            type: 'bar',
+            data: <?= $objeto->getChartJsCanvasId(); ?>,
+            options: <?= $objeto->getChartJsOptions(false,true); ?>
+        });
+    };
+
+    document.getElementById('btn_area_<?= $objeto->getChartJsId(); ?>').onclick = function () {
+        chart_<?= $objeto->getChartJsId(); ?>.destroy();
+        chart_<?= $objeto->getChartJsId(); ?> = new Chart(ctx_<?= $objeto->getChartJsId(); ?>, {
+            type: 'line',
+            data: <?= $objeto->getChartJsCanvasId(); ?>,
+            options: <?= $objeto->getChartJsOptions(true,true); ?>
+        });
+    };
+
+    document.getElementById('btn_line_<?= $objeto->getChartJsId(); ?>').onclick = function () {
+        chart_<?= $objeto->getChartJsId(); ?>.destroy();
+        chart_<?= $objeto->getChartJsId(); ?> = new Chart(ctx_<?= $objeto->getChartJsId(); ?>, {
+            type: 'line',
+            data: <?= $objeto->getChartJsCanvasId(); ?>,
+            options: <?= $objeto->getChartJsOptions(false,false); ?>
+        });
+    };
+</script>

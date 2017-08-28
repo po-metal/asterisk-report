@@ -1,0 +1,258 @@
+ul.pagination.pull-right.pagination{
+    margin:5px 10px;
+}
+
+h2.main-box-header-custom{
+    margin: 0px 0px 0px 20px;
+    padding: 5px;    
+}
+
+.search-btn{
+    font-size: 12px !important;
+    height: 34px !important;
+    padding: 6px 20px !important; 
+    border-radius: 3px;
+    background-clip: padding-box;
+    border-color: #e7ebee;
+    box-shadow: none;
+
+}
+.input-group-addon{ 
+    border-radius: 3px !important;
+    background-clip: padding-box !important;
+    border-color: #e7ebee !important;
+    box-shadow: none !important;
+}
+
+ .input-sm{
+    background-clip: padding-box !important;
+    border-color: #e7ebee !important;
+    box-shadow: none !important;
+ }
+.action_column{
+    text-align: right;
+
+}
+
+.navbar-right .dropdown-menu {
+    right: 0;
+    left: auto !important;
+}
+
+#content-wrapper{
+    min-height: 700px !important;
+}
+
+.btnCustom{
+    background-color: #fff;
+    border: 1px solid #3498db;
+    color: #2980b9;   
+    margin-top: 1px;
+    font-size: 12px;
+    line-height: 1 !important;
+    padding: 6px 12px !important;
+    border-radius: 3px !important;
+    background-clip: padding-box ;
+}
+.btnCustom:hover{
+    background-color: #3498db;
+    color: #fff; 
+}
+
+.btnCancelCustom{
+    background-color: #fff;
+    border: 1px solid #7f8c8d;
+    color: #7f8c8d;   
+    border-radius: 2px;
+    font-size: 12px;
+    margin-top: 1px;
+      line-height: 1 !important;
+    padding: 6px 12px !important;
+    border-radius: 3px !important;
+}
+.btnCancelCustom:hover{
+    background-color: #7f8c8d;
+    color: #fff; 
+}
+
+.btnCircle{
+    border-radius: 25px;
+    border: 1px solid transparent;
+    font-size: 14px;
+    margin: 1px;
+    line-height:14px !important;
+}
+
+.btnBlue{
+    border-color: #337ab7;
+    background-color: #fff;
+    color: #337ab7;
+}
+
+.btnBlue:hover{
+    background-color: #337ab7;
+    color: #fff; 
+}
+
+.btnGreen{
+    border-color: #2ECC71;
+    background-color: #fff;
+    color: #2ECC71;
+}
+
+.btnGreen:hover{
+    background-color: #2ECC71;
+    color: #fff; 
+}
+
+.btnGray{
+    border-color: #95A5A6;
+    background-color: #fff;
+    color: #95A5A6;
+}
+
+.btnGray:hover{
+    background-color: #95A5A6;
+    color: #fff; 
+}
+
+.btnRed{
+    border-color: #e74c3c;
+    background-color: #fff;
+    color: #e74c3c;
+}
+
+.btnRed:hover{
+    background-color: #e74c3c;
+    color: #fff; 
+}
+
+.btnYellow{
+    border-color: #F1C40F;
+    background-color: #fff;
+    color: #F1C40F;
+}
+
+.btnYellow:hover{
+    background-color: #F1C40F;
+    color: #fff; 
+}
+
+.faCenterCustom{
+    line-height:initial !important; 
+}
+
+.select2-container{
+    min-width: 100% !important;
+}
+
+.removeCursorCustom{
+    cursor: default !important;
+}
+
+.addPaddingTopCustom{
+    padding-top: 25px !important;    
+}
+
+.form-control{
+    font-size: 12px;
+}
+
+.menuAdminCustom li a{
+    color: #777777 !important;
+}
+.bigCubeCustom{
+    position: relative;
+    float: left;
+    padding: 5px;
+    margin: 3px;
+    height: 150px;
+    width: 150px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    color: #fff;
+    border-collapse: #fff;
+}
+.bigCubeCustom:hover{
+    cursor:pointer; cursor: hand;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    color: #fff;
+    border: 2px solid;
+}
+.cubeIcon{
+    position: relative; 
+    text-align: center; 
+    width: 100%;
+    font-size: 80px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+.cubeNofit{
+   position: absolute;
+   border: 2px solid #eee;
+   padding: 5px;
+   border-radius: 50%;
+   bottom: -3px;
+   right: -3px;
+   background-color: #404040 !important;
+   filter: none !important;
+   float: right !important;
+   font-size: 75%;
+   font-weight: 700;
+   line-height: 1;
+   color: #fff;
+}
+.cubeLabel{
+    color: #fff;
+    font-size: 125%;
+}
+.cubeColorCian{
+    background-color: #57889C;
+}
+.cubeColorBrown{
+    background-color: #A57225;
+}
+.cubeColorPurple{
+    background-color: #6E587A;
+}
+.cubeColorGray{
+    background-color: #4C4F53;
+}
+.cubeColorOlive{
+    background-color: #71843F;
+}
+.cubeColorViolet{
+    background-color: #A8829F;
+}
+
+.box-title{
+    padding-left: 0px !important;
+}
+
+.tooltip-inner {
+    white-space:pre;
+    max-width:none;
+}
+
+.tdVerticalCustom{
+    vertical-align: middle !important;
+}
+
+.tdSeparatorServices{
+    border-top:1px dashed #BBB !important;
+}
+
+.trcheck{
+    background-color: #ABEBC6  !important;
+    
+}
+
+
+.pp{
+    color: #777;
+    font-style: italic;
+}
+
+
+

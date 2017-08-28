@@ -1,0 +1,48 @@
+<br>
+<?php $file = false; ?>
+<div class="row container-fluid">
+
+    <?php
+    $form = $this->grid->getCrudForm();
+    $form->setAttribute("action", "javascript:cdiForm_" . $this->grid->getId() . "('" . $form->getName() . "')");
+    $formConfig = $this->grid->getOptions()->getFormConfig();
+
+    $form->add(array(
+        'name' => 'cancel',
+        'type' => 'Zend\Form\Element\Button',
+        'attributes' => array(
+            'value' => "Cancel",
+            'class' => 'pull-right btn btn-default',
+            'onclick' => 'cdiListRecords_' . $this->grid->getId().'()',
+        ),
+        'options' => array(
+            'label' => 'Cancel',
+        )
+    ));
+    ?>
+
+    <?php
+    echo $this->renderForm($form, $formConfig->getStyle(), $formConfig->getColumns(), $formConfig->getHorizontalGroups(), $formConfig->getVerticalGroups());
+    ?>
+
+</div>
+
+
+<?php echo $this->GridCrudAjax($this->grid->getId(), $this->url($this->route, array(), array(), true)); ?>
+
+
+<?php if ($file): ?>
+    <?php
+//Para Imagenes
+    $url = $this->url($this->route, array(), array(), true);
+    ?>
+    <script>
+
+        $('#<?php echo $form->getName(); ?>').ajaxForm({
+            url: "<?php echo $url; ?>",
+            complete: function (xhr) {
+                $('#<?php echo $this->grid->getId(); ?>').html(xhr.responseText);
+            }
+        });
+    </script>
+<?php endif; ?>

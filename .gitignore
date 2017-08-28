@@ -1,0 +1,8 @@
+.vagrant/
+vendor/
+data/*
+!data/zf-metal-generator/
+config/development.config.php
+phpunit.xml
+ubuntu-xenial-16.04-cloudimg-console.log
+/nbproject/private/

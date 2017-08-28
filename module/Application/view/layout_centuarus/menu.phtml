@@ -1,0 +1,50 @@
+<div id="nav-col">
+    <section id="col-left" class="col-left-nano">
+        <div id="col-left-inner" class="col-left-nano-content">
+            <div id="user-left-box" class="clearfix hidden-sm hidden-xs">
+                <?php if ($user = $this->isAuthenticated()): ?>   
+                    <?php if ($user->getImg()): ?>
+                        <img src="<?php echo $this->getSecurityOptions()->getProfilePicturePathRelative() . $user->getImg(); ?>">
+                    <?php else: ?>
+                        <i class="glyphicon glyphicon-user"></i>
+                    <?php endif; ?>
+
+                    <div class="user-box">
+                        <span class="name">
+                                <?php //echo $this->translate('Bienvenido'); ?><br/>
+                            <?php if ($user->getName()): ?>
+                                <?php echo $user->getName(); ?>
+                            <?php elseif ($user->getUsername()): ?>
+                                <?php echo $user->getUsername(); ?>
+                            <?php else: ?>
+                                <?php echo $user->getEmail(); ?>
+                            <?php endif; ?>
+                        </span>
+                        <span class="status">
+                            <i class="fa fa-circle"></i> Online
+                        </span>
+                    </div>
+                <?php endif; ?>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-nav">	
+
+         
+                <?php
+
+                $inicio =  $this->
+                        navigation('default')
+                        ->findOneByLabel('INICIO');
+                
+                echo $this->
+                        navigation($inicio)
+                        ->menu()
+                        ->setUlClass('nav nav-pills nav-stacked')
+                        ->setPartial('zf-metal/commons/menu/vertical/nav-vertical');
+                ?>
+
+         
+
+            </div>
+        </div>
+    </section>
+</div>

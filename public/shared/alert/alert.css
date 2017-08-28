@@ -1,0 +1,96 @@
+/* Notifications */
+#alertNotification {
+    z-index: 9999;
+    position: absolute;
+    top: 150px;
+    left: 10%;
+    width: 80%;
+    //margin-left: -250px;
+    filter: alpha(opacity=95s);
+}
+
+
+/* Notification Element */
+#alertNotification > div {
+    position: relative;
+    margin: 5px 0px;
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+}
+.alertNotification {
+    z-index: 9999;
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    width: 500px;
+    margin-left: -250px;
+    filter: alpha(opacity=90);
+}
+.alertNotification > div {
+    position: relative;
+    margin: 5px 0px;
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+}
+
+#alertNotification .alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px; }
+#alertNotification .alert h4 {
+    margin-top: 0;
+    color: inherit; }
+#alertNotification .alert .alert-link {
+    font-weight: bold; }
+#alertNotification .alert > p,
+#alertNotification .alert > ul {
+    margin-bottom: 0; }
+#alertNotification .alert > p + p {
+    margin-top: 5px; }
+
+#alertNotification .alert-dismissable,
+#alertNotification .alert-dismissible {
+    padding-right: 35px; }
+#alertNotification .alert-dismissable .close,
+#alertNotification .alert-dismissible .close {
+    position: relative;
+    top: -2px;
+    right: -21px;
+    color: inherit; }
+
+#alertNotification .alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d; }
+#alertNotification .alert-success hr {
+    border-top-color: #c9e2b3; }
+#alertNotification .alert-success .alert-link {
+    color: #2b542c; }
+
+#alertNotification .alert-info {
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    color: #31708f; }
+#alertNotification .alert-info hr {
+    border-top-color: #a6e1ec; }
+#alertNotification .alert-info .alert-link {
+    color: #245269; }
+
+#alertNotification .alert-warning {
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+    color: #8a6d3b; }
+#alertNotification .alert-warning hr {
+    border-top-color: #f7e1b5; }
+#alertNotification .alert-warning .alert-link {
+    color: #66512c; }
+
+#alertNotification .alert-danger {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442; }
+#alertNotification .alert-danger hr {
+    border-top-color: #e4b9c0; }
+#alertNotification .alert-danger .alert-link {
+    color: #843534; }

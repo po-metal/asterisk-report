@@ -1,0 +1,86 @@
+<style>
+    .navbar-profile-avatar{
+        width:20px;
+        height: 20px;
+    }
+</style>
+<?php if ($user = $this->isAuthenticated()): ?>
+
+ <li class="dropdown user user-menu">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <!--Picture OR Icon-->
+        <?php if ($user->getImg()): ?>
+            <img src="<?php echo $this->getSecurityOptions()->getProfilePicturePathRelative(). $user->getImg(); ?>" class="user-image" alt="User Image">
+        <?php else : ?>
+            <img src="<?= $this->basePath('/img/user.jpg');?>" class="user-image" alt="User Image">
+        <?php endif; ?>
+         <?php if ($user->getName()): ?>
+            <?php echo $user->getName(); ?>
+        <?php elseif ($user->getUsername()): ?>
+            <?php echo $user->getUsername(); ?>
+        <?php endif; ?>
+    </a>
+    <ul class="dropdown-menu">
+      <!-- User image -->
+      <li class="user-header">
+          <!--Picture OR Icon-->
+          <?php if ($user->getImg()): ?>
+            <img src="<?php echo $this->getSecurityOptions()->getProfilePicturePathRelative(). $user->getImg(); ?>" class="img-circle" alt="User Image">
+            <?php else : ?>
+            <img src="<?= $this->basePath('/img/user.jpg');?>" class="user-image" alt="User Image">
+        <?php endif; ?>
+
+        <p>
+          <?php if ($user->getName()): ?>
+            <?php echo $user->getName(); ?>
+        <?php elseif ($user->getUsername()): ?>
+            <?php echo $user->getUsername(); ?>
+        <?php else: ?>
+            <?php echo $user->getEmail(); ?>
+        <?php endif; ?>
+        <?php if ($user->getCreateAt()): ?>
+                          <small> <?= $this->translate('Member since'). ' ' . $user->getCreateAt()->format('d/m/Y'); ?></small>
+                          <?php endif; ?>
+
+    </p>
+</li>
+
+<!-- Menu Footer-->
+<li class="user-footer">
+    <div class="pull-left">
+      <a href="/user/profile" class="btn btn-default btn-flat"><?php echo $this->translate('Perfil'); ?></a>
+  </div>
+  <div class="pull-right">
+      <a href="/user/logout" class="btn btn-default btn-flat"><?php echo $this->translate('Sign out'); ?></a>
+  </div>
+</li>
+</ul>
+</li>
+
+<?php if ($this->isGranted("general-admin")): ?>
+    <li class="dropdown">
+        <a class="dropdown-toggle whitoutIcon" data-toggle="dropdown" href="#">
+            <i class="glyphicon glyphicon-th-large"></i> <i class="glyphicon glyphicon-triangle-bottom"></i>
+        </a>
+        <ul class="dropdown-menu menuAdminCustom">
+            <li><a href="/admin/users"><i class="glyphicon glyphicon-user"></i> <?php echo $this->translate('Usuarios'); ?></a>
+            </li>    
+            <li class="divider"></li>
+            <li><a href="/admin/roles"><i class="glyphicon glyphicon-folder-close"></i>  <?php echo $this->translate('Roles'); ?></a>
+            </li>
+            <li class="divider"></li>
+            <li><a href="/admin/groups"><i class="glyphicon glyphicon-tower"></i>  <?php echo $this->translate('Grupos'); ?></a>
+            </li>
+
+        </ul>
+    </li>
+<?php endif; ?>
+
+<?php else: ?>
+    <li class="pull-right">
+        <a href="/user/login"><i><?php echo $this->translate('Iniciar Sesión'); ?> </i> <i class="glyphicon glyphicon-log-in"> </i></a>
+    </li>
+
+<?php endif; ?>
+
+

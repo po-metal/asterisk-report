@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Asterisk-Report</title>
+
+        <?php echo $this->partial('layout/head/meta'); ?>
+
+        <?php echo $this->partial('layout/head/css'); ?>
+
+        <?php echo $this->partial('layout/head/js'); ?>
+
+        <style>
+            h2,h3 {padding-left:14px;}
+        </style>
+
+    </head>
+    <body class="skin-blue layout-top-nav" id="body">
+        <div class="wrapper">
+
+            <header class="main-header">
+
+                <nav class="navbar navbar-static-top">
+                    <!--TITLE-HOME-->
+                    <?php echo $this->partial('layout/nav/home'); ?>
+
+                    <!-- MENU-->
+                    <?php echo $this->partial('layout/nav/menu'); ?>
+
+                    <!--RIGHT MENU-->       
+                    <?php echo $this->partial('layout/nav/menu-right'); ?>
+                </nav>
+            </header>
+
+
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <?php //echo $this->partial('layout/partials/content-header'); ?>
+
+                <!-- Main content -->
+                <section class="content">
+                    <?= $this->content ?>
+                </section>
+
+            </div>
+            <?php echo $this->partial('layout/partials/footer'); ?>
+    </body>
+</html>

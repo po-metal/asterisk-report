@@ -1,0 +1,56 @@
+<div class="col-md-12">
+    <!-- LINE CHART -->
+    <div class="box box-primary">
+        <div class="box-body">
+            <!--TABLE-->
+            <div class="table-responsive">
+                <table class="table  table-products table-condensed table-hover  text-center" style="font-size: 12px;">
+                    <!--TABLE-TH-->
+                    <tr>
+
+
+                    </tr>
+              
+                    <!--TABLE-TD-->
+                    <?php foreach ($objetos as $objeto): ?>
+                        <tr>
+                            <th style="background: #0d6aad; color: #DDDDDD" class="text-center"><?= $objeto->getTipo()->getId(); ?> - <?= $objeto; ?></th>
+                            <?php foreach ($objeto->getTipo()->getMetrica()->getX() as $k => $x) : ?>
+                                <th class="text-center ">
+                                    <a class="cursor-pointer" href="/metrica-asterisk/metrica-saliente-troncal<?php echo $objeto->getTipo()->getMetrica()->getZoom() . str_replace(["-", " "], ["/", "/"], $k); ?>"><?= $x ?></a>
+                                </th>
+                            <?php endforeach; ?>
+
+                        </tr>
+
+                        <?php foreach ($objeto->getObjetos() as $categoria): ?>
+                            <tr class="tipoall <?php echo $this->metricaAsteriskTiposDestino()->getByName($categoria)->getClass(); ?>">
+                                <th>
+                                    <?php echo $categoria; ?>
+                                </th>
+                            </tr>
+
+                            <?php foreach ($categoria->getEstados() as $estado): ?>
+                                <tr class="tipoall <?php echo $this->metricaAsteriskTiposDestino()->getByName($categoria)->getClass(); ?>">
+
+                                    <td><?php echo $estado; ?></td>
+                                    <?php foreach ($objeto->getTipo()->getMetrica()->getX() as $k => $x) : ?>
+                                        <td class="<?php echo $estado->getLevelClass($k); ?>">
+                                            <span class="cc">
+                                                <?= $estado->obtenerFecha($k); ?> 
+                                            </span>
+                                            <span style="display: none;" class="pp clearfix"><?= ($estado->obtenerFecha($k)) ? $estado->obtenerFecha($k)->getPorcentaje() . "%" : ""; ?></span>
+                                        </td>
+
+                                    <?php endforeach; ?>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    <?php endforeach; ?>        
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>

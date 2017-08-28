@@ -1,0 +1,37 @@
+<?php
+$activeElement = $this->navigation()->findOneBy('active', 1);
+?>
+<?php if (isset($activeElement)): ?>
+    <div class="pull-left">
+        <h1><?php echo $activeElement->getLabel(); ?></h1>
+    </div>
+<?php endif; ?>
+
+<?php if (count($this->pages)): ?>
+
+    <div class="pull-right">
+        <ol class="breadcrumb">
+            <?php foreach ($this->pages as $page): ?>
+
+                <?php if ($page->isActive()): ?>
+                    <li class="active">
+                        <span><?php echo $page->getLabel(); ?></span>
+                    </li>
+                    <?php $labelActive = $page->getLabel(); ?>
+                <?php else: ?>
+                    <li ><a href="<?php echo $page->getHref() ?>">
+                            <?php echo $page->getLabel(); ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+
+            <?php endforeach; ?>
+        </ol>
+
+
+    </div>
+
+
+<?php endif; ?>
+<div class="clearfix"></div>

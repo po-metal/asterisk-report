@@ -1,0 +1,92 @@
+<?php if ($this->grid->getOptions()->getCrudConfig()->getAdd()->getEnable()): ?>
+    <div class="pull-right" style="margin-top: 25px;">
+        <a <?php echo $this->grid->getCrudColumn()->getAdd()["action"]; ?>
+            class="btn btn-primary pull-right">
+            <i class="fa fa-plus-circle fa-lg"></i> Crear
+        </a>
+    </div>
+<?php endif; ?>
+<div class="clearfix"></div>
+<div class="row">
+
+    <div class="main-box no-header clearfix">
+        <div class="main-box-body clearfix">
+            <div id="<?php echo $this->grid->getId(); ?>" >
+
+                <a class="pull-right" data-toggle="collapse" data-parent="#accordion" href="#collapseFilter_<?php echo $this->grid->getId(); ?>" aria-expanded="true" aria-controls="collapseFilter_<?php echo $this->grid->getId(); ?>" >
+                    <i class="btn btn-primary btn-sm fa fa-filter "> <i class="fa fa-caret-down "> </i></i> 
+
+                </a>
+                <div class="clearfix"></div>
+                <div id="collapseFilter_<?php echo $this->grid->getId(); ?>" class="panel-body panel-collapse collapse"  role="tabpanel" aria-labelledby="headingOne">
+                    <?php echo $this->partial($this->partialFilter, array("grid" => $this->grid)); ?>
+                </div>
+                <div class="main-box-body clearfix">
+                    <div class="table-responsive">
+                        <table class="table table-hover dataTable no-footer <?php echo $this->grid->getTableClass(); ?>">
+                            <!--HEADER-->
+                            <thead>
+                                <tr>
+                                    <?php foreach ($this->grid->getColumns() as $column): ?>
+                                        <?php if (!$column->getHidden()): ?>
+                                            <th>
+                                                <?php echo $this->translate((string) $column); ?>
+                                                <?php if ($column->getType() != "extra" && $column->getType() != "crud"): ?>
+                                                    <!--SORT-->
+                                                    <?php if ($this->grid->getSort() && $this->grid->getSort()->getBy() == $column->getName()): ?>
+                                                        <?php if ($this->grid->getSort()->getDirection() == "DESC"): ?>
+                                                            <a class="sorting_desc" href="<?php echo $this->url($this->route, array(), array('query' => array('sortBy' => $column->getName(), "sortDirection" => "ASC") + $this->routeParams), true); ?>"></a>
+                                                        <?php elseif ($this->grid->getSort()->getDirection() == "ASC"): ?>
+                                                            <a class="sorting_asc" href="<?php echo $this->url($this->route, array(), array('query' => array('sortBy' => $column->getName(), "sortDirection" => "DESC") + $this->routeParams), true); ?>"></a>
+                                                        <?php endif; ?>
+                                                    <?php else: ?>
+                                                        <a class="sorting" href="<?php echo $this->url($this->route, array(), array('query' => array('sortBy' => $column->getName(), "sortDirection" => "DESC") + $this->routeParams), true); ?>"></a>
+                                                    <?php endif; ?>
+
+                                                <?php endif; ?>
+
+                                            </th>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+
+                                </tr>
+                            <thead>
+                            <tbody>
+                                <?php if (count($this->grid->getRow())): ?>
+                                    <?php foreach ($this->grid->getRow() as $data): ?>
+                                        <tr>
+                                            <?php foreach ($this->grid->getColumns() as $column): ?>
+                                                <?php if (!$column->getHidden()): ?>
+                                                    <td class="<?php echo $column->getTdClass(); ?>">
+                                                        <?php //TODO - echo $column->getHtmlBegin(); ?>
+
+                                                        <?php echo $this->GridField($column, $data); ?>
+
+                                                        <?php //TODO - echo $column->getHtmlEnd(); ?>
+
+                                                    </td>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+
+                <?php
+                echo $this->paginationControl($this->grid->getPaginator(), 'Sliding', $this->partialPagination, array("routeParams" => $this->routeParams,
+                    'route' => $this->route));
+                ?>
+
+
+                <?php echo $this->GridCrud($this->grid->getId()); ?>
+
+            </div>
+
+        </div>
+    </div>
+</div>

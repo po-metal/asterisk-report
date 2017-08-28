@@ -1,0 +1,13 @@
+<?php
+echo $this->headScript()
+        
+        ->prependFile($this->basePath() . '/shared/centaurus/global/CookieManager.js')
+        ->prependFile($this->basePath() . '/shared/centaurus/theme/scripts.js')
+        ->prependFile($this->basePath() . '/shared/centaurus/global/jquery.nanoscroller.min.js')
+        ->prependFile($this->basePath() . '/shared/centaurus/global/bootstrap.js')
+        ->prependFile("https://code.jquery.com/jquery-2.2.4.min.js", 'text/javascript')
+        ->appendScript($this->partial('layout/js/layout.js'), 'text/javascript')
+;
+?>
+
+

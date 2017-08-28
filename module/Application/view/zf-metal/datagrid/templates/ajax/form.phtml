@@ -1,0 +1,52 @@
+<?php $this->flashCurrent(); ?>
+<?php $file = false; ?>
+<div class="row container-fluid">
+
+    <?php
+    $form = $this->grid->getCrudForm();
+    $form->setAttribute("action", "javascript:" . \ZfMetal\Datagrid\C::F_FORM . $this->grid->getId() . "('" . $form->getName() . "')");
+    $formConfig = $this->grid->getOptions()->getFormConfig();
+
+    $form->get('submit')->setAttribute('value', 'Enviar')
+            ->setAttribute('class', 'pull-right btn btnCustom')
+            ->setAttribute('style', 'margin-left: 2px');    
+
+    $form->add(array(
+        'name' => 'cancel',
+        'type' => 'Zend\Form\Element\Button',
+        'attributes' => array(
+            'value' => "Cancelar",
+            'class' => 'pull-right btn btnCancelCustom',
+            'onclick' => \ZfMetal\Datagrid\C::F_LIST. $this->grid->getId() . '()',
+        ),
+        'options' => array(
+            'label' => 'Cancel',
+        )
+    ));
+    ?>
+
+    <?php
+    echo $this->renderForm($form, $formConfig->getStyle(), $formConfig->getColumns(), $formConfig->getGroups());
+    ?>
+
+</div>
+
+
+<?php echo $this->GridCrudAjax($this->grid->getId(), $this->url($this->route, array(), array(), true)); ?>
+
+
+<?php if ($file): ?>
+    <?php
+//Para Imagenes
+    $url = $this->url($this->route, array(), array(), true);
+    ?>
+    <script>
+
+        $('#<?php echo $form->getName(); ?>').ajaxForm({
+            url: "<?php echo $url; ?>",
+            complete: function (xhr) {
+                $('#<?php echo $this->grid->getId(); ?>').html(xhr.responseText);
+            }
+        });
+    </script>
+<?php endif; ?>

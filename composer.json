@@ -1,0 +1,70 @@
+{
+    "name": "po-metal/acef",
+    "description": "Template zf3 proyects",
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "zend framework",
+        "mvc",
+        "zf"
+    ],
+    "homepage": "http://framework.zend.com/",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^5.6 || ^7.0",
+        "zendframework/zend-component-installer": "^1.0 || ^0.3 || ^1.0.0-dev@dev",
+        "zendframework/zend-mvc": "^3.0.4",
+        "zendframework/zend-view": "^2.9",
+        "zendframework/zend-json": "^3.0",
+        "zendframework/zend-navigation": "^2.8",
+        "zendframework/zend-i18n": "^2.7",
+        "zendframework/zend-mvc-plugin-flashmessenger": "^1.0",
+        "zendframework/zend-console": "^2.6",
+        "zendframework/zend-mvc-console": "^1.1",
+        "doctrine/doctrine-orm-module": "^1.1",
+        "gedmo/doctrine-extensions": "^2.4",
+        "swissengine/doctrine-module-extension": "dev-master",
+        "zfcampus/zf-development-mode": "^3.0",
+        "zf-metal/log": "^0.0.2",
+        "zf-metal/mail": "^0.0.2",
+        "zf-metal/security": "dev-master",
+        "zf-metal/security-social": "dev-master",
+        "zf-metal/commons": "dev-master",
+        "zf-metal/datagrid": "dev-master",
+        "zf-metal/generator": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Application\\": "module/Application/src/",
+            "BieiCentral\\": "module/BieiCentral/src/",
+            "Cdr\\": "module/Cdr/src/",
+            "CallCenter\\": "module/CallCenter/src/",
+            "MetricaAsterisk\\": "module/MetricaAsterisk/src/",
+            "Queues\\": "module/Queues/src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ApplicationTest\\": "module/Application/test/"
+        }
+    },
+    "extra": [],
+    "scripts": {
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf",
+        "development-disable": "zf-development-mode disable",
+        "development-enable": "zf-development-mode enable",
+        "development-status": "zf-development-mode status",
+        "post-create-project-cmd": [
+            "@development-enable"
+        ],
+        "serve": "php -S 0.0.0.0:8080 -t public/ public/index.php",
+        "test": "phpunit"
+    },
+    "require-dev": {
+        "zendframework/zend-developer-tools": "^1.1",
+        "jhuet/zdt-logger-module": "^1.0",
+        "cdi/cdilogger": "dev-master"
+    }
+}

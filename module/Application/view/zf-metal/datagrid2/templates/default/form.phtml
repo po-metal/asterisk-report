@@ -1,0 +1,31 @@
+<div class="clearfix"></div>
+<div class="row ">
+    <div class="main-box no-header clearfix">
+        <div class="main-box-body clearfix">
+        
+            
+            
+            <?php
+            $form = $this->grid->getCrudForm();
+            $formConfig = $this->grid->getOptions()->getFormConfig();
+
+            $form->add(array(
+                'name' => 'cancel',
+                'type' => 'Zend\Form\Element\Button',
+                'attributes' => array(
+                    'value' => "Cancel",
+                    'class' => 'pull-right btn btn-default',
+                    'onclick' => 'window.location.href="' . $this->url($this->route, array(), array('query' => $this->routeParams), true) . '"',
+                ),
+                'options' => array(
+                    'label' => 'Cancel',
+                )
+            ));
+            ?>
+            <?php
+            echo $this->renderForm($form, $formConfig->getStyle(), $formConfig->getColumns(), $formConfig->getHorizontalGroups(), $formConfig->getVerticalGroups());
+            ?>
+        </div>
+    </div>
+</div>
+

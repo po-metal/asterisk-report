@@ -1,0 +1,111 @@
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <div class="main-box clearfix">
+            <br>
+            <div class="clearfix"></div>
+            <div class="main-box-body clearfix">
+                <?php echo $this->renderForm($this->form); ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="main-box clearfix">
+            
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab1" data-toggle="tab" aria-expanded="true">Llamadas Salientes</a>
+                </li>
+                <li class=""><a href="#tab2" data-toggle="tab" aria-expanded="false">Llamadas Entrantes</a>
+                </li>
+                <li class=""><a href="#tab3" data-toggle="tab" aria-expanded="false">Transferencias</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane fade active in" id="tab1">
+                    <table class="table table-hover dataTable no-footer">
+                <tr>
+                    <th>Extension</th>
+                    <th>Local</th>
+                    <th>Celulares</th>
+                    <th>LDN</th>
+                    <th>LDI</th>
+                    <th>Especiales</th>
+                    <th>Internas</th>
+                    <th>Resto</th>
+                    <th>Total</th>
+                </tr>
+
+                <?php foreach ($this->reporte as $interno => $val): ?>
+                    <tr>
+                        <td><?php echo $interno; ?></td>
+                          <td><?php echo ($val["Local"]["all"])?$val["Local"]["all"]:"0"; ?>/
+                            <span class="text-primary">
+                                <?php echo ($val["Local"]["ok"])?$val["Local"]["ok"]:"0"; ?>
+                            </span>
+                        </td>
+                        <td><?php echo ($val["Celular"]["all"])?$val["Celular"]["all"]:"0"; ?>/
+                            <span class="text-primary">
+                                <?php echo ($val["Celular"]["ok"])?$val["Celular"]["ok"]:"0"; ?>
+                            </span>
+                        </td>
+                        <td><?php echo ($val["LDN"]["all"])?$val["LDN"]["all"]:"0"; ?>/
+                            <span class="text-primary">
+                                <?php echo ($val["LDN"]["ok"])?$val["LDN"]["ok"]:"0"; ?>
+                            </span>
+                        </td>
+                        <td><?php echo ($val["LDI"]["all"])?$val["LDI"]["all"]:"0"; ?>/
+                            <span class="text-primary">
+                                <?php echo ($val["LDI"]["ok"])?$val["LDI"]["ok"]:"0"; ?>
+                            </span>
+                        </td>
+                        <td><?php echo ($val["Especial"]["all"])?$val["Especial"]["all"]:"0"; ?>/
+                            <span class="text-primary">
+                                <?php echo ($val["Especial"]["ok"])?$val["Especial"]["ok"]:"0"; ?>
+                            </span>
+                        </td>
+                         <td><?php echo ($val["Interna"]["all"])?$val["Interna"]["all"]:"0"; ?>/
+                            <span class="text-primary">
+                                <?php echo ($val["Interna"]["ok"])?$val["Interna"]["ok"]:"0"; ?>
+                            </span>
+                        </td>
+                         <td><?php echo ($val["Resto"]["all"])?$val["Resto"]["all"]:"0"; ?>/
+                            <span class="text-primary">
+                                <?php echo ($val["Resto"]["ok"])?$val["Resto"]["ok"]:"0"; ?>
+                            </span>
+                        </td>
+                         <td><?php echo ($val["Total"]["all"])?$val["Total"]["all"]:"0"; ?>/
+                            <span class="text-primary">
+                                <?php echo ($val["Total"]["ok"])?$val["Total"]["ok"]:"0"; ?>
+                            </span>
+                        </td>
+   
+         
+                    </tr>
+
+                <?php endforeach; ?>
+            </table>
+                </div>
+                <div class="tab-pane fade" id="tab2">
+                    <h4>Llamadas Entrantes</h4>
+                    <p></p>
+                </div>
+                <div class="tab-pane fade" id="tab3">
+                    <h4>Llamadas Salientes</h4>
+                    <p></p>
+                </div>
+            </div>
+            
+
+          
+
+            
+        </div>
+    </div>
+</div>
+
+<div class="clearfix"></div>

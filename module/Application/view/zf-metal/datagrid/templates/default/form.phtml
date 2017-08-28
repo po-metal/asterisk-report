@@ -1,0 +1,38 @@
+<?php $this->flashCurrent(); ?>
+
+<div class="box">
+    
+    <div class="box-header clearfix">
+        <h2 class="box-title pull-left"> <?php echo $this->grid->get_title_form(); ?></h2>
+    </div>
+
+    
+    <div class="box-body clearfix">
+
+        <?php
+        $form = $this->grid->getCrudForm();
+        $formConfig = $this->grid->getOptions()->getFormConfig();
+
+        $form->get('submit')->setAttribute('value', 'Enviar')
+        ->setAttribute('class', 'pull-right btn btnCustom')
+        ->setAttribute('style', 'margin-left: 2px');
+        
+        $form->add(array(
+            'name' => 'cancel',
+            'type' => 'Zend\Form\Element\Button',
+            'attributes' => array(
+                'value' => "Cancelar",
+                'class' => 'pull-right btn btnCancelCustom',
+                'onclick' => 'window.location.href="' . $this->url($this->route, array(), array('query' => $this->routeParams), true) . '"',
+                ),
+            'options' => array(
+                'label' => 'Cancelar',
+                )
+            ));
+            ?>
+            <?php
+            echo $this->renderForm($form, $formConfig->getStyle(), $formConfig->getColumns(),$formConfig->getGroups());
+            ?>
+        </div>
+    </div>
+

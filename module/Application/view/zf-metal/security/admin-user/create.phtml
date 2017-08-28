@@ -1,0 +1,64 @@
+
+<div class="box box-primary">
+
+<div class="box-header with-border" >
+     <h3 class="box-title">Nuevo Usuario</h3>
+ </div>
+ <div class="box-body">
+     <?php
+     $groups = [
+     [
+     'type' => \ZfMetal\Commons\Options\FormGroupConfig::TYPE_HORIZONTAL,
+     'id' => 'User',
+     'title' => "",
+     'columns' => \ZfMetal\Commons\Consts::COLUMNS_TWO,
+     'style' => \ZfMetal\Commons\Consts::STYLE_VERTICAL,
+     'fields' => ['name', 'username', 'email', 'password']
+     ],
+     [
+     'type' => \ZfMetal\Commons\Options\FormGroupConfig::TYPE_HORIZONTAL,
+     'id' => 'enableUser',
+     'title' => null,
+     'columns' => \ZfMetal\Commons\Consts::COLUMNS_TWO,
+     'style' => \ZfMetal\Commons\Consts::STYLE_VERTICAL,
+     'fields' => ['active','roles']
+     ],
+     ];
+
+
+
+     $this->form->remove('groups');
+
+     $this->form->get('submit')->setAttribute('value', 'Enviar')
+     ->setAttribute('class', 'pull-right btn btnCustom')
+     ->setAttribute('style', 'margin-left: 2px');
+
+     $this->form->add(array(
+        'name' => 'cancel',
+        'type' => 'Zend\Form\Element\Button',
+        'attributes' => array(
+            'value' => "Cancelar",
+            'class' => 'pull-right btn btnCancelCustom',
+            'onclick' => 'window.location.href="' . $this->url('zf-metal.admin/users', array(), array('query' => $this->routeParams), true) . '"',
+            ),
+        'options' => array(
+            'label' => 'Cancelar',
+            )
+        ));
+
+     $this->form->get('name')
+     ->setAttribute('placeholder', 'Nombre')
+     ->setLabel('Nombre');
+     $this->form->get('username')
+     ->setAttribute('placeholder', 'Usuario')
+     ->setLabel('Usuario');
+     $this->form->get('email')
+     ->setAttribute('value', '');
+
+     echo $this->renderForm($this->form, \ZfMetal\Commons\Consts::STYLE_VERTICAL, \ZfMetal\Commons\Consts::COLUMNS_TWO, $groups);
+     ?>
+
+ </div>
+</div>
+
+

@@ -1,0 +1,28 @@
+<?php if (count($this->pages)): ?>
+
+        <ol class="breadcrumb">
+                <li > <a href="<?= $this->url('home');?>">INICIO</a>
+                    </li>
+            <?php foreach ($this->pages as $page): ?>
+
+                <?php if ($page->isActive()): ?>
+                    <li class="active">
+                        <span><?php echo $page->getLabel(); ?></span>
+                    </li>
+                    <?php $labelActive = $page->getLabel(); ?>
+                <?php else: ?>
+                    <li ><a href="<?php echo $page->getHref() ?>">
+                            <?php echo $page->getLabel(); ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+
+            <?php endforeach; ?>
+        </ol>
+        <?php if (isset($labelActive)): ?>
+
+            <h1><?php echo $labelActive; ?></h1>
+        <?php endif; ?>
+
+<?php endif; ?>

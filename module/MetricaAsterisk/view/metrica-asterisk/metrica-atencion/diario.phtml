@@ -1,0 +1,49 @@
+<?php
+$this->headScript()
+        ->appendFile("https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js")
+?>
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <?php
+            $form = $this->form;
+            $form->prepare();
+            ?>
+            <?php echo $this->form()->openTag($form); ?>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+                <?php echo $this->formElement($form->get("anio")); ?>
+            </div>
+             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+                <?php echo $this->formElement($form->get("mes")); ?>
+            </div>
+              <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+                <?php echo $this->formElement($form->get("dia")); ?>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+                <?php echo $this->formElement($form->get("submit")); ?>
+            </div>
+
+            <?php echo $this->form()->closeTag($form); ?>
+
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">   
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default " onclick="$('.cc ').show();$('.pp').show();"><i class="fa fa-crosshairs"></i> <i class="fa fa-percent"></i></button>
+                    <button type="button" class="btn btn-default" onclick="$('.cc ').show();$('.pp').hide();"><i class="fa fa-crosshairs"></i></button>
+                    <button type="button" class="btn btn-default" onclick="$('.cc ').hide();$('.pp').show();"><i class="fa fa-percent"></i></button>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>      
+</div>
+
+<div class="IVR" >
+    <?php echo $this->partial('metrica-asterisk/metrica-atencion/partial/metrica', ['tipo' => $this->metrica->obtenerTipo("ivr")]); ?>
+</div>
+
+
+
+

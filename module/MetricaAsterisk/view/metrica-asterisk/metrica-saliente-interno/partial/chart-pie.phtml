@@ -1,0 +1,39 @@
+<div class="col-md-5">
+    <!-- LINE CHART -->
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title"><?= $objeto->getTipo()->getId(); ?> - <?= $objeto; ?>
+
+            </h3>
+             <div class="pull-right" style="margin-left:20px;">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+         
+        </div>
+        <div class="box-body">
+            <div class="chart">
+                <canvas id="<?= $objeto->getChartJsPieCanvasId(); ?>" style="height: 200px; width: 510px;" height="200" width="510" ></canvas>
+            </div>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+
+
+</div>
+
+<script>
+    var ctx_pie_<?= $objeto->getChartJsId(); ?> = document.getElementById("<?= $objeto->getChartJsPieCanvasId(); ?>").getContext('2d');
+    var pie_<?= $objeto->getChartJsId(); ?> = new Chart(ctx_pie_<?= $objeto->getChartJsId(); ?>, {
+        type: "pie",
+        data:<?= $objeto->getChartJsPieData($this->metricaAsteriskOptions()->getColoresPorEstado()); ?>,
+        options: {
+            responsive: true
+        }
+    });
+
+
+</script>
+

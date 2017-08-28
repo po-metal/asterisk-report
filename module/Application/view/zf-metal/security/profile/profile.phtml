@@ -1,0 +1,122 @@
+<?php
+$this->flashCurrent();
+?>
+<style>
+  .blue-bg {
+    background-color: #2C3E50 !important;
+  }
+</style>
+<div class="row" style="margin-top: -30px">
+  <section class="content-header">
+
+
+    <ol class="breadcrumb">
+      <li> <a href="/">INICIO</a>
+      </li>
+      <li class="active">
+        <span>Perfil</span>
+      </li>
+    </ol>
+
+    <h1>Perfil</h1>
+
+
+  </section>
+</div>
+<br>
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+
+
+    <div class="row" id="user-profile">
+     <div class="col-md-3">
+
+      <!-- Profile Image -->
+      <div class="box box-primary">
+        <div class="box-body box-profile">
+          <?php if($user->getImg()) : ?>
+            <img class="profile-user-img img-responsive img-circle" src="<?= $this->basePath($this->getSecurityOptions()->getProfilePicturePathRelative()) . $user->getImg(); ?>" alt="User profile picture">
+            <?php else : ?>
+            <img class="profile-user-img img-responsive img-circle" src="<?= $this->basePath('/img/logo_sondeos.jpeg');?>" alt="User Image">
+          <?php endif ; ?>
+          <h3 class="profile-username text-center"><?= ucfirst($user->getName()); ?></h3>
+
+          <p class="text-muted text-center"><?php if ($user->getCreateAt()): ?>
+            <small> <?= $this->translate('Member since'). ' ' . $user->getCreateAt()->format('d/m/Y'); ?></small>
+          <?php endif; ?></p>
+
+          <?php echo $this->form()->openTag($formImg) ?>
+          <div>
+            <div class="profile-message-btn center-block text-center" >
+              <label class="btn btn-primary btn-block"> Actualizar Foto
+                <?php echo $this->formFile($formImg->get('img')->setAttribute('class', 'hidden')->setAttribute('id', 'btnpicture')); ?>
+              </label>
+            </div>
+          </div>
+
+          <?php echo $this->form()->closeTag($formImg); ?>
+
+          <hr>
+          <div class="profile-message-btn center-block text-center">
+            <a class="btn btn-danger btn-block" href="<?= $this->url('zf-metal.user/profile/password-update'); ?>" >
+              <span class="fa fa-lock"></span>
+              <?php echo $this->translate('Modificar Password'); ?>
+            </a>
+          </div>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+
+      <!-- /.box -->
+    </div>
+
+    <div class="col-md-9">
+      <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">User Info</a></li>
+
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="activity">
+
+
+            <i class="fa fa-cubes fa-lg"></i> Roles y permisos:
+            <ul>
+             <?php foreach ($user->getRoles() as $rol) : ?>
+              <li>
+                <span class="label label-info tags"><?= $rol->getName(); ?></span>
+                <ul>
+                <?php foreach ($rol->getPermissions() as $permission) : ?>
+                  <li>    
+                    <span class="label label-success tags"><?= $rol->getName() . ' - ' . $permission->getName(); ?></span>
+                  </li>
+                <?php endforeach; ?>
+                </ul>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+   
+
+        </div>
+        <!-- /.tab-pane -->
+
+        <!-- /.tab-pane -->
+      </div>
+      <!-- /.tab-content -->
+    </div>
+    <!-- /.nav-tabs-custom -->
+  </div>
+
+</div>
+
+</div>
+</div>
+
+<script>
+  $(document).on('ready', function(){
+   $('#btnpicture').change(function () {
+    $("#image").submit();
+  });
+ });
+</script>
