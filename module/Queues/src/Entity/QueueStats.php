@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping\UniqueConstraint as UniqueConstraint;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Stats
+ * QueueStats
  *
  *
  *
@@ -17,29 +17,28 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @license
  * @link
  * @ORM\Table(name="q_queue_stats")
- * @ORM\Entity(repositoryClass="Queues\Repository\StatsRepository")
+ * @ORM\Entity(repositoryClass="Queues\Repository\QueueStatsRepository")
  */
-class Stats
+class QueueStats
 {
 
     /**
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Attributes({"type":"text"})
-     * @Annotation\Options({"label":"queueStatsId", "description":"", "addon":""})
+     * @Annotation\Options({"label":"id", "description":"", "addon":""})
      * @ORM\Id
-     * @ORM\Column(type="integer", length=11, unique=false, nullable=true,
-     * name="queue_stats_id")
+     * @ORM\Column(type="integer", length=11, unique=false, nullable=true, name="id")
      */
-    public $queueStatsId = null;
+    public $id = null;
 
-    public function getQueueStatsId()
+    public function getId()
     {
-        return $this->queueStatsId;
+        return $this->id;
     }
 
-    public function setQueueStatsId($queueStatsId)
+    public function setId($id)
     {
-        $this->queueStatsId = $queueStatsId;
+        $this->id = $id;
     }
 
     public function __toString()

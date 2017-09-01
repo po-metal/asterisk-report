@@ -1,6 +1,6 @@
 <?php
 
-namespace Cdr;
+namespace Queues;
 
 return [
     'doctrine' => [
