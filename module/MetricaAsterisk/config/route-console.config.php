@@ -24,6 +24,16 @@ return [
                         ),
                     ),
                 ),
+                 'daemon_queues' => array(
+                    'options' => array(
+                        // add [ and ] if optional ( ex : [<doname>] )
+                        'route' => 'queues [--verbose|-v] [<option>]',
+                        'defaults' => array(
+                            'controller' => \MetricaAsterisk\Controller\DaemonMetricsQueueController::class,
+                            'action' => 'run'
+                        ),
+                    ),
+                ),
             )
         )
     )

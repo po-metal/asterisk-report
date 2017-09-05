@@ -16,7 +16,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @author Cristian Incarnato
  * @license BSD
  * @link
- * @ORM\Table(name="ma_metrics_queue")
+ * @ORM\Table(name="ma_metrics_queue",uniqueConstraints={@UniqueConstraint(name="unico",
+ * columns={"queue", "date"})})
  * @ORM\Entity(repositoryClass="MetricaAsterisk\Repository\MetricsQueueRepository")
  */
 class MetricsQueue
@@ -87,12 +88,12 @@ class MetricsQueue
     /**
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Attributes({"type":"text"})
-     * @Annotation\Options({"label":"Ofrecida No Atendida", "description":"",
-     * "addon":""})
+     * @Annotation\Options({"label":"Rechazada (Ofrecida No Atendida)",
+     * "description":"", "addon":""})
      * @ORM\Column(type="integer", length=11, unique=false, nullable=true,
-     * name="unattended_offered")
+     * name="rejected")
      */
-    public $unattendedOffered = null;
+    public $rejected = null;
 
     /**
      * @Annotation\Type("Zend\Form\Element\Text")
@@ -221,15 +222,6 @@ class MetricsQueue
         $this->abandonedSl = $abandonedSl;
     }
 
-    public function getUnattendedOffered()
-    {
-        return $this->unattendedOffered;
-    }
-
-    public function setUnattendedOffered($unattendedOffered)
-    {
-        $this->unattendedOffered = $unattendedOffered;
-    }
 
     public function getWaitTime()
     {
@@ -289,6 +281,16 @@ class MetricsQueue
     public function setServiceLevel($serviceLevel)
     {
         $this->serviceLevel = $serviceLevel;
+    }
+
+    public function getRejected()
+    {
+        return $this->rejected;
+    }
+
+    public function setRejected($rejected)
+    {
+        $this->rejected = $rejected;
     }
 
     public function __toString()

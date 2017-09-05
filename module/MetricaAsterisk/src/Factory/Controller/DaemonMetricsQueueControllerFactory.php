@@ -21,7 +21,8 @@ class DaemonMetricsQueueControllerFactory implements FactoryInterface
     {
         /* @var $em \Doctrine\ORM\EntityManager */
         $em = $container->get("doctrine.entitymanager.orm_default");
-        return new \MetricaAsterisk\Controller\DaemonMetricsQueueController($em);
+         $em2 = $container->get("doctrine.entitymanager.orm_queues");
+        return new \MetricaAsterisk\Controller\DaemonMetricsQueueController($em,$em2);
     }
 
 

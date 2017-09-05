@@ -13,8 +13,7 @@ use Zend\Mvc\Controller\AbstractActionController;
  * @license BSD
  * @link
  */
-class MetricaAtencionQueueController extends AbstractActionController
-{
+class MetricaAtencionQueueController extends AbstractActionController {
 
     const ENTITY = '\\Queues\\Entity\\Stats';
 
@@ -23,46 +22,52 @@ class MetricaAtencionQueueController extends AbstractActionController
      */
     public $em = null;
 
-    public function getEm()
-    {
+    public function getEm() {
         return $this->em;
     }
 
-    public function setEm(\Doctrine\ORM\EntityManager $em)
-    {
+    public function setEm(\Doctrine\ORM\EntityManager $em) {
         $this->em = $em;
     }
 
-    public function getEntityRepository()
-    {
+    public function getEntityRepository() {
         return $this->getEm()->getRepository(self::ENTITY);
     }
 
-    public function __construct(\Doctrine\ORM\EntityManager $em)
-    {
+    public function __construct(\Doctrine\ORM\EntityManager $em) {
         $this->em = $em;
     }
 
-    public function anualAction()
-    {
-        return [];
+    public function anualAction() {
+        $form = new \MetricaAsterisk\Form\Anual();
     }
 
-    public function mensualAction()
-    {
-        return [];
+    public function mensualAction() {
+        $anio = $this->params("anio");
+        $mes = $this->params("mes");
     }
 
-    public function diarioAction()
-    {
-        return [];
+    public function diarioAction() {
+        $anio = $this->params("anio");
+        $mes = $this->params("mes");
+        $dia = $this->params("dia");
+        $form = new \MetricaAsterisk\Form\Diario();
+        if (!$anio) {
+            $anio = date('Y');
+        }
+        if (!$mes) {
+            $mes = date('m');
+        }
+        if (!$dia) {
+            $dia = date('d');
+        }
+        $form->get('anio')->setValue($anio);
+        $form->get('mes')->setValue($mes);
+        $form->get('dia')->setValue($dia);
     }
 
-    public function detalladoAction()
-    {
+    public function detalladoAction() {
         return [];
     }
-
 
 }
-
