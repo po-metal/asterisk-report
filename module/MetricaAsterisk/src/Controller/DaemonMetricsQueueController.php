@@ -66,7 +66,7 @@ class DaemonMetricsQueueController extends AbstractActionController {
 
     public function runAction() {
 
-        $queueStatsRecords = $this->getQueueStatsRepository()->getBase("2017-08-01", "2017-09-01");
+        $queueStatsRecords = $this->getQueueStatsRepository()->getBase("2017-09-01", "2017-10-01");
 
         //Inserto Metrica en tabla Sumaraizada "MetricaSalientes"
         if (count($queueStatsRecords)) {

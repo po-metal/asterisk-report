@@ -8,6 +8,11 @@
         "mvc",
         "zf"
     ],
+    "config": {
+    "platform":{
+        "php": "5.6"
+        }
+    },
     "homepage": "http://framework.zend.com/",
     "minimum-stability": "dev",
     "prefer-stable": true,

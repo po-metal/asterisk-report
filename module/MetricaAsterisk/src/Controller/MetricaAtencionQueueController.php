@@ -13,9 +13,9 @@ use Zend\Mvc\Controller\AbstractActionController;
  * @license BSD
  * @link
  */
-class MetricaAtencionQueueController extends AbstractActionController {
+class MetricaAtencionQueueController extends MetricaBaseController {
 
-    const ENTITY = '\\Queues\\Entity\\Stats';
+    const ENTITY = '\\MetricaAsterisk\\Entity\\MetricsQueue';
 
     /**
      * @var \Doctrine\ORM\EntityManager
@@ -30,7 +30,12 @@ class MetricaAtencionQueueController extends AbstractActionController {
         $this->em = $em;
     }
 
-    public function getEntityRepository() {
+    /**
+     * 
+     * @return  \MetricaAsterisk\Repository\MetricaQueueRepository
+     */
+    public function getMetricsQueueRepository() {
+
         return $this->getEm()->getRepository(self::ENTITY);
     }
 
@@ -39,31 +44,104 @@ class MetricaAtencionQueueController extends AbstractActionController {
     }
 
     public function anualAction() {
-        $form = new \MetricaAsterisk\Form\Anual();
+           parent::anualAction();
+
+        //OBTENGO REGISTROS
+        $registros = $this->getMetricsQueueRepository()->getMetrica($this->getInicio(), $this->getFin(), "%Y-%m");
+
+        #@toReview
+        if (!count($registros)) {
+            return $this->forward()->dispatch(\MetricaAsterisk\Controller\MetricaAtencionController::class, ['action' => "sin-registros"]);
+        }
+
+        $this->procesarRegistros($registros);
+
+        return ["form" => $this->getForm(), 'metrica' => $this->getMetrica()];
     }
 
     public function mensualAction() {
-        $anio = $this->params("anio");
-        $mes = $this->params("mes");
+        parent::mensualAction();
+
+        //OBTENGO REGISTROS
+        $registros = $this->getMetricsQueueRepository()->getMetrica($this->getInicio(), $this->getFin(), "%Y-%m-%d");
+
+        #@toReview
+        if (!count($registros)) {
+            return $this->forward()->dispatch(\MetricaAsterisk\Controller\MetricaAtencionController::class, ['action' => "sin-registros"]);
+        }
+
+        $this->procesarRegistros($registros);
+
+        return ["form" => $this->getForm(), 'metrica' => $this->getMetrica()];
     }
 
     public function diarioAction() {
-        $anio = $this->params("anio");
-        $mes = $this->params("mes");
-        $dia = $this->params("dia");
-        $form = new \MetricaAsterisk\Form\Diario();
-        if (!$anio) {
-            $anio = date('Y');
+        parent::diarioAction();
+
+        //OBTENGO REGISTROS
+        $registros = $this->getMetricsQueueRepository()->getMetrica($this->getInicio(), $this->getFin(), "%Y-%m-%d %H");
+
+        #@toReview
+        if (!count($registros)) {
+            return $this->forward()->dispatch(\MetricaAsterisk\Controller\MetricaAtencionController::class, ['action' => "sin-registros"]);
         }
-        if (!$mes) {
-            $mes = date('m');
+
+        $this->procesarRegistros($registros);
+
+
+        return ["form" => $this->getForm(), 'metrica' => $this->getMetrica()];
+    }
+
+    protected function procesarRegistros($registros) {
+        foreach ($registros as $r) {
+            $this->getMetrica()->obtenerCrearTipo("queue")
+                    ->obtenerCrearObjeto($r->queue)
+                    ->obtenerCrearEstado("Recibidas")
+                    ->obtenerCrearFecha($r->fecha, $r->received);
+
+            $this->getMetrica()->obtenerCrearTipo("queue")
+                    ->obtenerCrearObjeto($r->queue)
+                    ->obtenerCrearEstado("Atendidas")
+                    ->obtenerCrearFecha($r->fecha, $r->attended);
+
+            $this->getMetrica()->obtenerCrearTipo("queue")
+                    ->obtenerCrearObjeto($r->queue)
+                    ->obtenerCrearEstado("Rechazadas")
+                    ->obtenerCrearFecha($r->fecha, $r->rejected);
+
+            $this->getMetrica()->obtenerCrearTipo("queue")
+                    ->obtenerCrearObjeto($r->queue)
+                    ->obtenerCrearEstado("Abandonadas")
+                    ->obtenerCrearFecha($r->fecha, $r->abandoned);
+
+
+            $this->getMetrica()->obtenerCrearTipo("queue")
+                    ->obtenerCrearObjeto($r->queue)
+                    ->obtenerCrearEstado("AbandonadasSL");
+                  //  ->obtenerCrearFecha($r->fecha, 1);
+
+            $this->getMetrica()->obtenerCrearTipo("queue")
+                    ->obtenerCrearObjeto($r->queue)
+                    ->obtenerCrearEstado("Tiempo de Espera");
+                //    ->obtenerCrearFecha($r->fecha, 0);
+
+
+            $this->getMetrica()->obtenerCrearTipo("queue")
+                    ->obtenerCrearObjeto($r->queue)
+                    ->obtenerCrearEstado("Tiempo de Conversacion");
+                 //   ->obtenerCrearFecha($r->fecha, 0);
+
+
+            $this->getMetrica()->obtenerCrearTipo("queue")
+                    ->obtenerCrearObjeto($r->queue)
+                    ->obtenerCrearEstado("Atención");
+                //    ->obtenerCrearFecha($r->fecha, 0);
+
+            $this->getMetrica()->obtenerCrearTipo("queue")
+                    ->obtenerCrearObjeto($r->queue)
+                    ->obtenerCrearEstado("ServiceLevel");
+                //    ->obtenerCrearFecha($r->fecha, 0);
         }
-        if (!$dia) {
-            $dia = date('d');
-        }
-        $form->get('anio')->setValue($anio);
-        $form->get('mes')->setValue($mes);
-        $form->get('dia')->setValue($dia);
     }
 
     public function detalladoAction() {

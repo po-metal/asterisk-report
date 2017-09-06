@@ -1,0 +1,10 @@
+
+
+<?php foreach ($this->tipo->getObjetos() as $objeto): ?>
+
+    <?php echo $this->partial('metrica-asterisk/metrica-atencion-queue/partial/table-horizontal', ['objeto' => $objeto]); ?>
+
+   
+    <div class="clearfix"></div>
+
+<?php endforeach; ?>

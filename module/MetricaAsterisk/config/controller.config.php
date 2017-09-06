@@ -20,6 +20,7 @@ return array(
             \MetricaAsterisk\Controller\MetricaAtencionInternoController::class => \MetricaAsterisk\Factory\Controller\MetricaAtencionInternoControllerFactory::class,
             \MetricaAsterisk\Controller\MetricaAtencionIvrController::class => \MetricaAsterisk\Factory\Controller\MetricaAtencionIvrControllerFactory::class,
             \MetricaAsterisk\Controller\DaemonMetricsQueueController::class => \MetricaAsterisk\Factory\Controller\DaemonMetricsQueueControllerFactory::class,
+            \MetricaAsterisk\Controller\MetricaBaseController::class => \MetricaAsterisk\Factory\Controller\MetricaBaseControllerFactory::class,
         ),
     ),
 );
