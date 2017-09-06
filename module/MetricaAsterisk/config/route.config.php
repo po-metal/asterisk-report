@@ -541,7 +541,7 @@ return [
                                 'type' => 'Segment',
                                 'mayTerminate' => true,
                                 'options' => [
-                                    'route' => '/anual',
+                                    'route' => '/anual[/:anio]',
                                     'defaults' => [
                                         'controller' => \MetricaAsterisk\Controller\MetricaAtencionQueueController::CLASS,
                                         'action' => 'anual',
@@ -552,7 +552,7 @@ return [
                                 'type' => 'Segment',
                                 'mayTerminate' => true,
                                 'options' => [
-                                    'route' => '/mensual',
+                                    'route' => '/mensual[/:anio/:mes]',
                                     'defaults' => [
                                         'controller' => \MetricaAsterisk\Controller\MetricaAtencionQueueController::CLASS,
                                         'action' => 'mensual',
@@ -574,7 +574,7 @@ return [
                                 'type' => 'Segment',
                                 'mayTerminate' => true,
                                 'options' => [
-                                    'route' => '/detallado',
+                                    'route' => '/detallado[/:desde/:hasta]',
                                     'defaults' => [
                                         'controller' => \MetricaAsterisk\Controller\MetricaAtencionQueueController::CLASS,
                                         'action' => 'detallado',
@@ -620,7 +620,7 @@ return [
                                 'type' => 'Segment',
                                 'mayTerminate' => true,
                                 'options' => [
-                                    'route' => '/diario',
+                                    'route' => '/diario[/:anio/:mes/:dia]',
                                     'defaults' => [
                                         'controller' => \MetricaAsterisk\Controller\MetricaAtencionInternoController::CLASS,
                                         'action' => 'diario',
@@ -714,6 +714,30 @@ return [
                                     'defaults' => [
                                         'controller' => \MetricaAsterisk\Controller\MetricaAtencionIvrController::CLASS,
                                         'action' => 'detallado',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                    'DaemonMetricsQueue' => [
+                        'type' => 'Literal',
+                        'mayTerminate' => false,
+                        'options' => [
+                            'route' => '/daemon-metrics-queue',
+                            'defaults' => [
+                                'controller' => \MetricaAsterisk\Controller\DaemonMetricsQueueController::CLASS,
+                                'action' => 'run',
+                            ],
+                        ],
+                        'child_routes' => [
+                            'Run' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/run',
+                                    'defaults' => [
+                                        'controller' => \MetricaAsterisk\Controller\DaemonMetricsQueueController::CLASS,
+                                        'action' => 'run',
                                     ],
                                 ],
                             ],
